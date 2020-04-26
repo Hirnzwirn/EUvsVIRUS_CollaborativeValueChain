@@ -23,7 +23,7 @@ def plot_drug_dependency_matrix(table):
     conf_masked = conf.astype('float')
     conf_masked[conf_masked == 0] = np.nan
 
-    fig, ax = plt.subplots(figsize=(10, 10))
+    fig, ax = plt.subplots(figsize=(50, 50))
     im = ax.imshow(conf_masked)
 
     ax.set_xticks(np.arange(len(distinct_drugs)))
@@ -35,7 +35,7 @@ def plot_drug_dependency_matrix(table):
     plt.setp(ax.get_xticklabels(), rotation=90, ha="right",
              rotation_mode="anchor")
     cb = plt.colorbar(im, ax=ax, fraction=0.0235, aspect=40)
-    cb.ax.tick_params(labelsize=10)
+    cb.ax.tick_params(labelsize=30)
 
     plt.show()
 
@@ -53,3 +53,20 @@ def plot_timeline_clinical_trials(table, column='First Posted'):
     plt.setp(markerline, mec="k", mfc="w", zorder=3)
     markerline.set_ydata(np.zeros(len(distinct_dates)))
     plt.show()
+
+class color:
+   PURPLE = '\033[95m'
+   CYAN = '\033[96m'
+   DARKCYAN = '\033[36m'
+   BLUE = '\033[94m'
+   GREEN = '\033[92m'
+   YELLOW = '\033[93m'
+   RED = '\033[91m'
+   BOLD = '\033[1m'
+   UNDERLINE = '\033[4m'
+   END = '\033[0m'
+
+def print_trial(trial):
+    for key in trial.keys():
+        print(color.BOLD + key + color.END)
+        print(trial[key])
